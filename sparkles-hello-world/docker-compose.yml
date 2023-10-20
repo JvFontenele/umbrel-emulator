@@ -9,6 +9,19 @@ services:
       APP_PORT: 3000
     
   server:
-    image: getumbrel/community-app-store-hello-world:latest
+    image: linuxserver/heimdall
+    container_name: heimdall
+    volumes:
+      - /home/user/appdata/heimdall:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
     user: "1000:1000"
     init: true
+
+
